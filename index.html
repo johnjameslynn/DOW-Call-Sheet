@@ -5,7 +5,7 @@
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="css/styles.css" rel="stylesheet" type="text/css" />
 </head>
-<body onLoad="getLocation()">
+<body onLoad="getLocation(), displayCallTime()">
 
 <header>
   <div class="production-title">
@@ -24,7 +24,7 @@
     <div class="info">
       <b>Call Time</b>
     </div>
-    <div class="num-display" id="call-time">7:00 AM</div>
+    <div class="num-display" id="call-time-display">7:00 AM</div>
   </li>
   <li class="current-weather">
     <div class="info">
@@ -33,12 +33,20 @@
     </div>
     <div class="num-display" id="current-weather-display"></div>
   </li>
+  <li class="sunrise-sunset">
+    <div class="info">
+      <b>Sunrise // Sunset</b>
+    </div>
+      <div class="num-display-stack-top" id="sunrise-display"></div>
+      <div class="num-display-stack-bottom" id="sunset-display"></div>
+  </li>
 </ul>
 
 <script src="http://i6.cims.nyu.edu/~jc3436/380/canvas/js/p5.js"></script>
 <script src="http://i6.cims.nyu.edu/~jc3436/380/canvas/js/p5.dom.js"></script>
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="js/modernizr.js"></script>
+<script src="js/moment.min.js"></script>
 <script src="js/chroma.js"></script>
 <!-- <script src="weather.js"></script> -->
 <script>
@@ -62,12 +70,40 @@
       currentWeatherDescription.innerHTML = weatherData.name + ", " + weatherData.weather[0].description;
 
 
-      var adjTemp = -2.5*weatherData.main.temp+250;
+      var adjTemp = (-2.5*weatherData.main.temp)+250;
       if (adjTemp > 100) adjTemp = 100;
       if (adjTemp < -50) adjTemp = -50;
 
       currentWeatherDisplay.style.backgroundColor = "hsl(" + adjTemp + ",80%,50%)";
+
+      var currentSunriseDisplay = document.getElementById("sunrise-display");
+      var currentSunsetDisplay = document.getElementById("sunset-display");
+
+      var sunriseUnix = weatherData.sys.sunrise * 1000;
+      var sunriseTime = moment(sunriseUnix).format("h:mm A");
+
+      var sunsetUnix = weatherData.sys.sunset * 1000;
+      var sunsetTime = moment(sunsetUnix).format("h:mm A");
+
+      currentSunriseDisplay.innerHTML = sunriseTime;
+      currentSunsetDisplay.innerHTML = sunsetTime;
+
+
     });
+  }
+
+  function displayCallTime(){
+    var callTimeDisplay = document.getElementById("call-time-display");
+//1430823600000
+    var callTime = new Date(1430700420000);
+    var d = new Date();
+
+    if (d < callTime){
+      callTimeDisplay.style.backgroundColor = "#EF4836";
+    }else{
+      callTimeDisplay.style.backgroundColor = "#ABB7B7";
+    }
+
   }
 
   /*

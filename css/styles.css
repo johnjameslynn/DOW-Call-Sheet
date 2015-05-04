@@ -50,12 +50,43 @@ ul.modules .num-display{
   line-height: 108px;
   text-align: center;
 }
+ul.modules .num-display-stack-top{
+  background-color: #EFEFEF;
+  height: 48px;
+  width: 120px;
+  padding: 0 .4em;
+
+  position: absolute;
+    top: 0;
+    right: 0;
+
+  color: #FFF;
+  font-size: 1.6em;
+  font-weight: 100;
+  line-height: 52px;
+  text-align: center;
+}
+ul.modules .num-display-stack-bottom{
+  background-color: #EFEFEF;
+  height: 48px;
+  min-width: 120px;
+  padding: 0 .4em;
+
+  position: absolute;
+    bottom: 0;
+    right: 0;
+
+  color: #FFF;
+  font-size: 1.6em;
+  font-weight: 100;
+  line-height: 52px;
+  text-align: center;
+}
 
 ul.modules li{
   height: 96px;
   list-style: none;
-  outline: 1px solid rgba(0,0,0,.2);
-  outline-width: 1px 0;
+  border-top: 1px solid rgba(0,0,0,.2);
   padding: 0 1em;
   position: relative;
 }
@@ -64,6 +95,13 @@ ul.modules li .info{
   position: relative;
     top: 50%;
   transform: translateY(-50%);
+}
+
+#sunrise-display{
+  background-color: #6a7cef;
+}
+#sunset-display{
+  background-color: #fd9f4f;
 }
 
 @media screen and (min-device-width : 320px) and (max-device-width : 568px){
