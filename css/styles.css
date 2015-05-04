@@ -104,6 +104,28 @@ ul.modules li .info{
   background-color: #fd9f4f;
 }
 
+
+@media
+(-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dppx) {
+
+  body{
+    font: 1.7em Helvetica;
+
+  }
+
+  ul.modules {
+    font-size: 1.2em;
+    height: 100px;
+  }
+
+
+
+}
+
+
+
+
 @media screen and (min-device-width : 320px) and (max-device-width : 568px){
 
   header .production-title h1{
