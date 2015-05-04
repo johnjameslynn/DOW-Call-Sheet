@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Call Sheet</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body onLoad="getLocation()">
+
+<header>
+  <div class="production-title">
+    <h1>Production Title</h1>
+  </div>
+  <div class="production-info">
+    <ul>
+      <li>Day 1 of 3</li>
+      <li>Sunday, May 3, 2015</li>
+    </ul>
+  </div>
+</header>
+
+<ul class="modules">
+  <li class="call-time">
+    <div class="info">
+      <b>Call Time</b>
+    </div>
+    <div class="num-display" id="call-time">7:00 AM</div>
+  </li>
+  <li class="current-weather">
+    <div class="info">
+      <b>Location Temperature</b>
+      <div id="current-weather-description"></div>
+    </div>
+    <div class="num-display" id="current-weather-display"></div>
+  </li>
+</ul>
+
+<script src="http://i6.cims.nyu.edu/~jc3436/380/canvas/js/p5.js"></script>
+<script src="http://i6.cims.nyu.edu/~jc3436/380/canvas/js/p5.dom.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="js/modernizr.js"></script>
+<script src="js/chroma.js"></script>
+<!-- <script src="weather.js"></script> -->
+<script>
+
+  function getLocation() {
+    if (Modernizr.geolocation) {
+      navigator.geolocation.getCurrentPosition(displayWeather);
+    } else {
+      alert("Could not find location");
+      // no native support; maybe try a fallback?
+    }
+  }
+
+  function displayWeather(position){
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude + '&units=imperial', function(weatherData) {
+
+      var currentWeatherDisplay = document.getElementById("current-weather-display");
+      var currentWeatherDescription = document.getElementById("current-weather-description");
+
+      currentWeatherDisplay.innerHTML = Math.round(weatherData.main.temp) + "&deg;";
+      currentWeatherDescription.innerHTML = weatherData.name + ", " + weatherData.weather[0].description;
+
+
+      var adjTemp = -2.5*weatherData.main.temp+250;
+      if (adjTemp > 100) adjTemp = 100;
+      if (adjTemp < -50) adjTemp = -50;
+
+      currentWeatherDisplay.style.backgroundColor = "hsl(" + adjTemp + ",80%,50%)";
+    });
+  }
+
+  /*
+
+  0 = 250
+  100 = 0
+
+  y = -.4x + 250
+
+  */
+
+  var scale = chroma.scale(['blue', 'red']);
+  // scale(0.5).hex(); // #FF7F7F
+
+</script>
+
+</body>
+</html>
