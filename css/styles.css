@@ -177,6 +177,9 @@ ul.modules li.scene .scene-length{
 }
 
 @media screen and (max-width: 626px){
+  .production-title{
+    font-size: .8em;
+  }
   ul.modules li.scene{
     font-size: .8em;
   }
