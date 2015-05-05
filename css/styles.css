@@ -25,6 +25,7 @@ header .production-info{
 }
 header .production-info li{
   display: inline-block;
+  line-height: 1.6em;
   list-style: none;
   margin-right: 2em;
 }
@@ -35,20 +36,33 @@ ul.modules{
 
 ul.modules .num-display{
   background-color: #EFEFEF;
-  padding: 0 .4em;
+  border-radius: 10px;
+
+  margin-right: 20px;
+  padding: .2em .4em;
 
   position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
 
-  height: 96px;
+    transform: translateY(-50%);
+
   width: auto;
 
   color: #FFF;
-  font-size: 4em;
+  font-size: 2em;
   font-weight: 100;
-  line-height: 108px;
   text-align: center;
+}
+ul.modules .sunrise-sunset .num-display{
+  float: right;
+  font-size: 1.2em;
+  margin: 0 0 0 10px;
+  position: relative;
+    top: 50%;
+    transform: translateY(-120%);
+
+  width: auto;
 }
 ul.modules .num-display-stack-top{
   background-color: #EFEFEF;
@@ -63,7 +77,7 @@ ul.modules .num-display-stack-top{
   color: #FFF;
   font-size: 1.6em;
   font-weight: 100;
-  line-height: 52px;
+  line-height: 54px;
   text-align: center;
 }
 ul.modules .num-display-stack-bottom{
@@ -91,11 +105,50 @@ ul.modules li{
   position: relative;
 }
 
+ul.modules li:nth-child(odd){
+  background-color: rgba(255,255,255,.4);
+}
+ul.modules li:nth-child(even){
+  background-color: rgba(255,255,255,.3);
+}
+
 ul.modules li .info{
   position: relative;
     top: 50%;
   transform: translateY(-50%);
 }
+
+ul.modules li.scene{
+  border: 10px solid #ABB7B7;
+  border-width: 0 10px;
+  clear: both;
+  font-family: monospace;
+  height: auto;
+}
+ul.modules li.ext-day{ border-color: #F4D03F; }
+ul.modules li.ext-night{ border-color: #446CB3; }
+ul.modules li.ext-dusk{ border-color: #F27935; }
+ul.modules li.int-day{ border-color: #DADFE1; }
+ul.modules li.int-night{ border-color: #2ECC71; }
+
+ul.modules li.scene div{
+  display: inline-block;
+  font-size: 1.4em;
+  line-height: 48px;
+  height: 48px;
+  padding: 0 1em;
+}
+ul.modules li.scene .scene-slug{
+  font-family: monospace;
+  text-transform:uppercase;
+}
+ul.modules li.scene .scene-number{
+  font-weight: bold;
+}
+ul.modules li.scene .scene-length{
+  float: right;
+}
+
 
 #sunrise-display{
   background-color: #6a7cef;
@@ -123,6 +176,18 @@ ul.modules li .info{
 
 }
 
+@media screen and (max-width: 626px){
+  ul.modules li.scene{
+    font-size: .8em;
+  }
+  ul.modules li.scene .scene-slug{
+    font-size: .95em;
+  }
+
+  header .production-info li{
+    font-size: .8em;
+  }
+}
 
 
 

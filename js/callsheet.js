@@ -12,6 +12,7 @@ console.log(daysLeft);
 
 var currentWeatherDisplay = document.getElementById("current-weather-display");
 var currentWeatherDescription = document.getElementById("current-weather-description");
+var currentWeatherTitle = document.getElementById("current-weather-title");
 
 
   function getLocation() {
@@ -34,8 +35,9 @@ var currentWeatherDescription = document.getElementById("current-weather-descrip
       $.getJSON(apiURL, function(forecastData){
 
         temp = forecastData.list[Math.round(daysLeft)].temp.day;
-        currentWeatherDisplay.innerHTML = Math.round(temp) + "&deg;";
+        currentWeatherDisplay.innerHTML = Math.round(temp) + "&deg; F";
         currentWeatherDescription.innerHTML = forecastData.city.name + ", " + forecastData.list[Math.round(daysLeft)].weather[0].description;
+        currentWeatherTitle.innerHTML = "Location Forecast";
 
 
         var adjTemp = (-2.5*temp)+250;
@@ -56,6 +58,7 @@ var currentWeatherDescription = document.getElementById("current-weather-descrip
 
       currentWeatherDisplay.innerHTML = Math.round(weatherData.main.temp) + "&deg;";
       currentWeatherDescription.innerHTML = weatherData.name + ", " + weatherData.weather[0].description;
+      currentWeatherTitle.innerHTML = "Current Temperature";
 
 
       var adjTemp = (-2.5*weatherData.main.temp)+250;
