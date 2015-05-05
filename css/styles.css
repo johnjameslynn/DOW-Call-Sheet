@@ -9,6 +9,11 @@ body {
   margin: 0;
   background-attachment: fixed;
 }
+a{
+  text-decoration: none;
+  color: #EF4836;
+  opacity: .8;
+}
 header{
   color: #333;
   text-align: left;
@@ -32,6 +37,12 @@ header .production-info li{
 
 ul.modules{
   margin: .4em 0;
+}
+
+li.scene:hover{
+  box-shadow: 1px 1px 5px #aaa;
+  transition: .2s;
+
 }
 
 ul.modules .num-display{
@@ -98,6 +109,13 @@ ul.modules li.scene .scene-time-done{ background-color: #ABB7B7; }
 ul.modules li.scene .scene-time-current{ background-color: #2ECC71; }
 ul.modules li.scene .scene-time-upcoming{ background-color: #EF4836; }
 
+ul.modules .schedule{
+font-size: 1em;
+font-weight: bold;
+height: 50px;
+border-bottom: 0px solid rgba(0,0,0,.2);
+}
+
 ul.modules li.ext-day{ border-color: #F4D03F; }
 ul.modules li.ext-night{ border-color: #446CB3; }
 ul.modules li.ext-dusk{ border-color: #F27935; }
@@ -131,8 +149,7 @@ ul.modules li.scene .scene-time{
 }
 
 
-@media
-(-webkit-min-device-pixel-ratio: 2),
+@media screen and (-webkit-min-device-pixel-ratio: 2),
 (min-resolution: 192dppx) {
 
   body{
@@ -140,9 +157,14 @@ ul.modules li.scene .scene-time{
 
   }
 
-  ul.modules {
+  ul.modules li{
     font-size: 1.2em;
-    height: 100px;
+    height: 5em;
+  }
+
+  ul.modules li.scene {
+    font-size: .8em;
+    height: 4em;
   }
 
 
@@ -173,4 +195,10 @@ ul.modules li.scene .scene-time{
     font-size: 4em;
   }
 
+}
+
+a{
+  text-decoration: none;
+  color: #EF4836;
+  opacity: .8;
 }

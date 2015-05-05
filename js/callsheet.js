@@ -102,6 +102,11 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
       callTimeDisplay.style.backgroundColor = "#ABB7B7";
     }
 
+    var callLocation = document.getElementById("call-location");
+    var address = callLocation.innerHTML;
+    var mapURL = "http://maps.google.com/?q=" + address +"";
+    callLocation.href=mapURL;
+
   }
 
 
