@@ -130,7 +130,7 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
           return [value];
       });
 
-      sceneArray[0].sort(compare);
+      sceneArray[1].sort(compare);
 
       for (var i=0; i<sceneData.scene.length; i++){
 
