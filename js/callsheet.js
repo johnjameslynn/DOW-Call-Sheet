@@ -126,6 +126,7 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
     console.log("Data being pulled from SCENES: " + apiURL);
     $.getJSON(apiURL, function(sceneData){
 
+
       var sceneArray = $.map(sceneData, function(value, index) {
           return [value];
       });
