@@ -39,12 +39,6 @@ ul.modules{
   margin: .4em 0;
 }
 
-li.scene:hover{
-  box-shadow: 1px 1px 5px #aaa;
-  transition: .2s;
-
-}
-
 ul.modules .num-display{
   background-color: #EFEFEF;
   border-radius: 10px;
@@ -103,6 +97,10 @@ ul.modules li.scene{
   clear: both;
   font-family: monospace;
   height: auto;
+}
+li.scene:hover{
+  box-shadow: 1px 1px 5px #aaa;
+  transition: .2s ease all;
 }
 ul.modules li.scene .num-display{ padding: 0 .8em; line-height: 200%; height: 80%; }
 ul.modules li.scene .scene-time-done{ background-color: #ABB7B7; }
@@ -166,6 +164,9 @@ ul.modules li.scene .scene-time{
     font-size: .8em;
     height: 4em;
   }
+  ul.modules li.scene .scene-length{
+    display: none;
+  }
 
 
 
@@ -181,6 +182,9 @@ ul.modules li.scene .scene-time{
   ul.modules li.scene .scene-slug{
     font-size: .95em;
   }
+  ul.modules li.scene .scene-length{
+    display: none;
+  }
 
   header .production-info li{
     font-size: .8em;
@@ -193,6 +197,9 @@ ul.modules li.scene .scene-time{
 
   header .production-title h1{
     font-size: 4em;
+  }
+  ul.modules li.scene .scene-length{
+    display: none;
   }
 
 }
