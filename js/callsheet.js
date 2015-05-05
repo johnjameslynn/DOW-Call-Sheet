@@ -54,8 +54,6 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
       console.log("Data being pulled from: " + apiURL);
       $.getJSON(apiURL, function(weatherData) {
 
-
-
       currentWeatherDisplay.innerHTML = Math.round(weatherData.main.temp) + "&deg;";
       currentWeatherDescription.innerHTML = weatherData.name + ", " + weatherData.weather[0].description;
       currentWeatherTitle.innerHTML = "Current Temperature";
@@ -67,9 +65,8 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
 
       currentWeatherDisplay.style.backgroundColor = "hsl(" + adjTemp + ",80%,50%)";
 
-
     });
-  }
+    }
     if (daysLeft<1){
       console.log("Getting Sun");
       apiURL = 'http://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&units=imperial';
@@ -86,8 +83,8 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
 
       currentSunriseDisplay.innerHTML = sunriseTime;
       currentSunsetDisplay.innerHTML = sunsetTime;
-    });
-  }
+      });
+    }
   }
 
 
@@ -105,6 +102,82 @@ var currentWeatherTitle = document.getElementById("current-weather-title");
       callTimeDisplay.style.backgroundColor = "#ABB7B7";
     }
 
+  }
+
+
+  function compare(a,b) {
+    if (a.time < b.time)
+       return -1;
+    if (a.time > b.time)
+      return 1;
+    return 0;
+  }
+
+  function displayScenes(){
+
+
+    var apiURL = 'js/scenes.json';
+
+    console.log("Data being pulled from SCENES: " + apiURL);
+    $.getJSON(apiURL, function(sceneData){
+
+      var sceneArray = $.map(sceneData, function(value, index) {
+          return [value];
+      });
+
+      sceneArray[0].sort(compare);
+
+      for (var i=0; i<sceneData.scene.length; i++){
+
+        sceneTimeMoment = moment(sceneData.scene[i].time);
+
+        var newScene = document.createElement("li");
+        newScene.className += "scene ";
+        newScene.id = "scene-" + i;
+        newScene.className += sceneData.scene[i].ie + "-" + sceneData.scene[i].dn;
+
+        var sceneNumber = document.createElement("div");
+        sceneNumber.className += "scene-number";
+        sceneNumber.id = "scene-number-" + i;
+        sceneNumberText = document.createTextNode(sceneData.scene[i]._id);
+        sceneNumber.appendChild(sceneNumberText);
+        newScene.appendChild(sceneNumber);
+
+        var sceneSlug = document.createElement("div");
+        sceneSlug.className += "scene-slug";
+        sceneSlug.id = "scene-slug-" + i;
+        sceneSlugText = document.createTextNode(sceneData.scene[i].ie + ". " + sceneData.scene[i].slug + " - " + sceneData.scene[i].dn);
+        sceneSlug.appendChild(sceneSlugText);
+        newScene.appendChild(sceneSlug);
+
+        var sceneLength = document.createElement("div");
+        sceneLength.className += "scene-length";
+        sceneLength.id = "scene-length-" + i;
+        sceneLengthText = document.createTextNode(sceneData.scene[i].pages);
+        sceneLength.appendChild(sceneLengthText);
+        newScene.appendChild(sceneLength);
+
+        var sceneTime = document.createElement("div");
+        sceneTime.className += "scene-time num-display";
+
+        if(now > moment(sceneData.scene[i].time) && now < moment(sceneData.scene[i+1].time)){
+          sceneTime.className += " scene-time-current";
+        }else if(now > moment(sceneData.scene[i].time)){
+          sceneTime.className += " scene-time-done";
+        }else{
+          sceneTime.className += " scene-time-upcoming";
+        }
+
+        sceneTime.id = "scene-time-" + i;
+        sceneTimeText = document.createTextNode(sceneTimeMoment.format("h:mm A"));
+        sceneTime.appendChild(sceneTimeText);
+        newScene.appendChild(sceneTime);
+
+        document.getElementById("scenes").appendChild(newScene);
+
+      }
+
+  }).error(function() { alert('Server Error: Problem with scenes.json') });
   }
 
   /*

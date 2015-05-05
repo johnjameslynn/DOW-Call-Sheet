@@ -5,7 +5,7 @@
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="css/styles.css" rel="stylesheet" type="text/css" />
 </head>
-<body onLoad="getLocation(), displayCallTime()">
+<body onLoad="getLocation(), displayCallTime(), displayScenes()">
 
 <header>
   <div class="production-title">
@@ -41,36 +41,44 @@
     <div class="num-display" id="sunset-display">7:10 PM</div>
     <div class="num-display" id="sunrise-display">5:57 AM</div>
   </li>
-  <li class="scene scene-2 ext-day">
-    <div class="scene-number">2</div>
+</ul>
+<ul class="modules" id="scenes">
+  <!-- <li class="scene scene-2 ext-day">
+    <div class="scene-number" id="scene-number-2">2</div>
     <div class="scene-slug">Ext. Washington Square Park - Day</div>
     <div class="scene-length">2/8 pgs</div>
+    <time id="scene-time-2">2015-05-05 14:00</time>
   </li>
   <li class="scene scene-1 int-day">
     <div class="scene-number">1</div>
     <div class="scene-slug">Int. Living Room - Day</div>
     <div class="scene-length">5/8 pgs</div>
+    <time id="scene-time-1"></time>
   </li>
   <li class="scene scene-6 int-day">
     <div class="scene-number">6</div>
     <div class="scene-slug">Int. Living Room - Day</div>
     <div class="scene-length">2 5/8 pgs</div>
+    <time id="scene-time-6"></time>
   </li>
   <li class="scene scene-5 ext-dusk">
     <div class="scene-number">5</div>
-    <div class="scene-slug">Ext. Coney Island - Dusk</div>
+    <div class="scene-slug">Ext. 719 Broadway - Dusk</div>
     <div class="scene-length">2 3/8 pgs</div>
+    <time id="scene-time-5"></time>
   </li>
   <li class="scene scene-3 int-night">
     <div class="scene-number">3</div>
     <div class="scene-slug">Int. Bedroom - Night</div>
     <div class="scene-length">2 1/8 pgs</div>
+    <time id="scene-time-3"></time>
   </li>
   <li class="scene scene-4 ext-night">
     <div class="scene-number">4</div>
     <div class="scene-slug">Ext. Brooklyn Bridge - Night</div>
     <div class="scene-length">1 2/8 pgs</div>
-  </li>
+    <time id="scene-time-4"></time>
+  </li> -->
 </ul>
 
 <script src="http://i6.cims.nyu.edu/~jc3436/380/canvas/js/p5.js"></script>
